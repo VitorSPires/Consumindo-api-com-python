@@ -4,7 +4,7 @@ import PySimpleGUI as sg, sys
 
 # Função que faz o request e retorna os valores desejados
 def buscar_dados(cidade, unidade): 
-    if unidade == 'Celcius': # se a unidade selecionada for "Celcius", adiciona o valor "&units=metric" ao request
+    if unidade == 'Celsius': # se a unidade selecionada for "Celsius", adiciona o valor "&units=metric" ao request
         request = requests.get("http://api.openweathermap.org/data/2.5/weather?q={}&appid=3ad92087b8a46499d0838a9985eb368b&units=metric".format(cidade))
     else: # unidade padrão da API é Kelvin
         request = requests.get("http://api.openweathermap.org/data/2.5/weather?q={}&appid=3ad92087b8a46499d0838a9985eb368b".format(cidade))
@@ -18,7 +18,7 @@ def gerar_janela(valores, graus): #função que cria a janela com os valores con
         [sg.Text("Escolha uma Cidade:"), sg.Input('', size=[15,1], key='_cidade_'),
         sg.Text("", size=[1,1]),
         sg.Text("Graus:"),
-        sg.Combo(['Celcius', 'Kelvin'], default_value='Celcius', key='_unidade_'),
+        sg.Combo(['Celsius', 'Kelvin'], default_value='Celsius', key='_unidade_'),
         sg.Text("", size=[2,1]),
         sg.Button(button_text='Buscar')],
         [sg.T("")],
@@ -44,7 +44,7 @@ telaInicial = [
     [sg.Text("Escolha uma Cidade:"), sg.Input('', size=[15,1], key='_cidade_'),
     sg.Text("", size=[1,1]),
     sg.Text("Graus:"),
-    sg.Combo(['Celcius', 'Kelvin'], default_value='Celcius', key='_unidade_'),
+    sg.Combo(['Celsius', 'Kelvin'], default_value='Celsius', key='_unidade_'),
     sg.Text("", size=[2,1]),
     sg.Button(button_text='Buscar')],
     [sg.T("")],
@@ -55,7 +55,7 @@ tela3 = [
     [sg.Text("Escolha uma Cidade:"), sg.Input('', size=[15,1], key='_cidade_'),
     sg.Text("", size=[1,1]),
     sg.Text("Graus:"),
-    sg.Combo(['Celcius', 'Kelvin'], default_value='Celcius', key='_unidade_'),
+    sg.Combo(['Celsius', 'Kelvin'], default_value='Celsius', key='_unidade_'),
     sg.Text("", size=[2,1]),
     sg.Button(button_text='Buscar')],
     [sg.T("")],
@@ -77,7 +77,7 @@ while True:
 
     if event == 'Buscar': # ao clicar no botão de busca
         valores = buscar_dados(values['_cidade_'], values['_unidade_']) # chamando a função que fará o request
-        if values['_unidade_'] == 'Celcius':
+        if values['_unidade_'] == 'Celsius':
             unidade = '°C'
         else:
             unidade = '°K'
